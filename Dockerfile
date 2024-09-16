@@ -1,9 +1,11 @@
 # Production environment #
 
 # Client side
-FROM node:16 AS frontend
+#FROM node:16 AS frontend
+FROM node:18-slim AS frontend
 WORKDIR /usr/src/app/frontend/
 COPY frontend/package*.json ./
+#RUN npm install
 RUN npm install
 COPY frontend/ ./
 RUN npm run build
