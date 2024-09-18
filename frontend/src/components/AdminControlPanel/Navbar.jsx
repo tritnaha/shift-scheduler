@@ -9,11 +9,11 @@ import logoLg from './../../logos/logo__full-white.svg';
 import logoSm from './../../logos/logo__small.svg';
 
 let navigation = [
-  { name: 'לוח בקרה', href: '/admin', current: false },
-  { name: 'בקשות', href: '/admin/requests', current: false },
-  { name: 'צור סידור', href: '/admin/schedule', current: false },
-  { name: 'סידורים', href: '/admin/schedule-history', current: false },
-  { name: 'משתמשים', href: '/admin/users', current: false },
+  { name: 'Stýripultur', href: '/admin', current: false },
+  { name: 'Umbønir', href: '/admin/requests', current: false },
+  { name: 'Ger skema', href: '/admin/schedule', current: false },
+  { name: 'Skemayvirlit', href: '/admin/schedule-history', current: false },
+  { name: 'Brúkarar', href: '/admin/users', current: false },
 ];
 
 function classNames(...classes) {
@@ -90,7 +90,7 @@ const Navbar = () => {
                       type="button"
                       className="flex items-center flex-auto px-1 py-1 font-medium text-gray-100 bg-gray-800 rounded hover:bg-red-700"
                     >
-                      צד משתמש
+                      Brúkarasíða
                       <RewindIcon className="w-6 ml-1" />
                     </button>
                   </Link>
@@ -124,7 +124,7 @@ const Navbar = () => {
                               'block px-4 py-2 text-base text-gray-700'
                             )}
                           >
-                            פרופיל
+                            Vangamynd
                           </Link>
                         )}
                       </Menu.Item>
@@ -137,7 +137,7 @@ const Navbar = () => {
                               'block px-4 py-2 text-base text-gray-700'
                             )}
                           >
-                            הגדרות
+                            Stillingar
                           </Link>
                         )}
                       </Menu.Item>
@@ -151,7 +151,7 @@ const Navbar = () => {
                               'block px-4 py-2 text-base text-gray-700'
                             )}
                           >
-                            התנתק
+                            Rita út
                           </Link>
                         )}
                       </Menu.Item>

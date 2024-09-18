@@ -48,7 +48,7 @@ const Footer = () => {
             <a
               target={'_blank'}
               rel="noopener noreferrer"
-              href="https://github.com/oasido/shift-scheduler"
+              href="https://github.com/tritnaha/shift-scheduler"
             >
               <VscGithub className="text-3xl" />
             </a>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { format, addDays, eachDayOfInterval, nextSunday, isFriday } from 'date-fns';
-import he from 'date-fns/locale/he';
+import fo from 'date-fns/locale/fo';
 import chunk from 'lodash/chunk';
 import sampleSize from 'lodash/sampleSize';
 import ScheduleDesktopView from './ScheduleDesktopView';
@@ -166,50 +166,50 @@ const Schedule = () => {
       let text = ``;
 
       if (warnMiddle.length > 0) {
-        text += `<div class="mb-3"><p class="font-medium">:שתי משמרות אמצע או יותר</p>${warnMiddle
+        text += `<div class="mb-3"><p class="font-medium">:Tvær ella fleiri miðjuvaktir</p>${warnMiddle
           .map((e) => e)
           .join(', ')}</div>`;
       }
       if (warnEvening.length > 0) {
-        text += `<div class="mb-3"><p class="font-medium">:שתי משמרות ערב או יותר</p>${warnEvening
+        text += `<div class="mb-3"><p class="font-medium">:Tvær ella fleiri kvøldvaktir</p>${warnEvening
           .map((e) => e)
           .join(', ')}</div>`;
       }
-      text += `<div class="flex-grow border-t my-2 border-gray-200"><p border-t border-gray-400></div>?האם להמשיך</p>`;
+      text += `<div class="flex-grow border-t my-2 border-gray-200"><p border-t border-gray-400></div>Halda fram?</p>`;
       return text || null;
     };
 
     if (warnMiddle.length > 0 || warnEvening.length > 0) {
       Swal.fire({
         html: handleWarningText(),
-        title: '!לא מכבד',
+        title: 'Ikki hóskandi!',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        cancelButtonText: 'ביטול',
-        confirmButtonText: 'אישור, המשמרות נכונות',
+        cancelButtonText: 'Ógilda',
+        confirmButtonText: 'Góðkenna, vaktirnar eru rættar',
       }).then((result) => {
         if (result.isConfirmed) {
           axios.post('/postSchedule', { savedSchedule, savedBy }).then((response) => {
             if (response.data === 'Success') {
               setStatus({
                 OK: true,
-                bolded: 'בוצע!',
-                msg: 'הסידור הועלה בהצלחה',
+                bolded: 'Liðugt!',
+                msg: 'Arbeiðsætlanin er løgd upp',
               });
             } else if (response.data === 'Error') {
               setStatus({
                 OK: false,
-                bolded: 'שגיאה!',
-                msg: 'הסידור לא הועלה',
+                bolded: 'Villa!',
+                msg: 'Arbeiðsætlanin varð ikki løgd upp',
               });
             }
           });
 
           Swal.fire(
-            '!הסידור הועלה בהצלחה',
-            '.עכשיו כולם יכולים לראות את הסידור בעמוד דף הבית',
+            'Arbeiðsætlanin er løgd upp!',
+            'Nú kunnu øll síggja arbeiðsætlanina á heimasíðuni.',
             'success'
           );
         } else {
@@ -222,15 +222,15 @@ const Schedule = () => {
       const response = await axios.post('/postSchedule', { savedSchedule, savedBy });
       if (response.data === 'Success') {
         Swal.fire(
-          '!הסידור הועלה בהצלחה',
-          '.עכשיו כולם יכולים לראות את הסידור בעמוד דף הבית',
+          'Arbeiðsætlanin er løgd upp!',
+          'Nú kunnu øll síggja arbeiðsætlanina á heimasíðuni.',
           'success'
         );
       } else if (response.data === 'Error') {
         setStatus({
           OK: false,
-          bolded: 'שגיאה!',
-          msg: 'הסידור לא הועלה',
+          bolded: 'Villa!',
+          msg: 'Arbeiðsætlanin varð ikki løgd upp',
         });
       }
     }
@@ -238,14 +238,14 @@ const Schedule = () => {
 
   const reHandleSchedule = (e) => {
     Swal.fire({
-      title: '?האם להמשיך',
-      text: '!כל השינויים ימחקו ולא ניתן יהיה לשחזר אותם',
+      title: 'Halda fram?',
+      text: 'Allar broytingar verða strikaðar og kunnu ikki endurskapast!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      cancelButtonText: 'ביטול',
-      confirmButtonText: 'הכן סידור מחדש',
+      cancelButtonText: 'Ógilda',
+      confirmButtonText: 'Ger nýggja arbeiðsætlan',
     }).then((result) => {
       if (result.isConfirmed) {
         handleSchedule(e);
@@ -254,7 +254,7 @@ const Schedule = () => {
   };
 
   const formatDay = (date) => {
-    return format(date, 'd LLLL', { locale: he });
+    return format(date, 'd LLLL', { locale: fo });
   };
 
   const days = {
@@ -277,10 +277,7 @@ const Schedule = () => {
       <div>
         <div className="grid mt-5 place-items-center" dir="rtl">
           <div className="flex justify-between w-11/12 lg:w-4/6 flex-end">
-            <h1 className="text-3xl font-semibold">צור סידור עבודה חדש</h1>
-            {/* <button className="px-2 py-1 text-base font-semibold text-white bg-gray-600 rounded-full focus:outline-none focus:ring focus:ring-blue-300 hover:bg-sky-700">
-              הגדרות
-            </button> */}
+            <h1 className="text-3xl font-semibold">Ger nýggja arbeiðsætlan</h1>
           </div>
         </div>
 
@@ -288,10 +285,10 @@ const Schedule = () => {
           {users && users.length <= 6 && (
             <div className="flex justify-center mt-5" dir="rtl">
               <div className="">
-                <Alert icon={<FiAlertCircle />} title="אזהרה" color="yellow">
-                  <p>זוהה כי יש קצת משתמשים רשומים באתר.</p>
+                <Alert icon={<FiAlertCircle />} title="Ávaring" color="yellow">
+                  <p>Tað eru fáir brúkarar skrásettir á síðuni.</p>
                   <p>
-                    מתחת ל-4 משתמשים (שאינם מנהלים), הכנת הסידור באופן אוטומטי תעבוד לא כמו שצריך.
+                    Við færri enn 4 brúkarum (sum ikki eru leiðarar), fer sjálvvirkandi gerð av arbeiðsætlanini ikki at virka sum ætlað.
                   </p>
                 </Alert>
               </div>
@@ -302,30 +299,30 @@ const Schedule = () => {
               <div className="text-xl">
                 <div className="grid grid-cols-6 font-bold">
                   <div className="p-2 border-b wrap">
-                    ראשון{' '}
+                    Sunnudagur{' '}
                     <span className="block text-sm font-normal break-words">
                       {formatDay(datesArr[0])}
                     </span>
                   </div>
                   <div className="table-cell p-2 border-b">
-                    שני <span className="block text-sm font-normal">{formatDay(datesArr[1])}</span>
+                    Mánadagur <span className="block text-sm font-normal">{formatDay(datesArr[1])}</span>
                   </div>
                   <div className="table-cell p-2 border-b">
-                    שלישי<span className="block text-sm font-normal">{formatDay(datesArr[2])}</span>
+                    Týsdagur<span className="block text-sm font-normal">{formatDay(datesArr[2])}</span>
                   </div>
                   <div className="table-cell p-2 border-b">
-                    רביעי<span className="block text-sm font-normal">{formatDay(datesArr[3])}</span>
+                    Mikudagur<span className="block text-sm font-normal">{formatDay(datesArr[3])}</span>
                   </div>
                   <div className="table-cell p-2 border-b">
-                    חמישי<span className="block text-sm font-normal">{formatDay(datesArr[4])}</span>
+                    Hósdagur<span className="block text-sm font-normal">{formatDay(datesArr[4])}</span>
                   </div>
                   <div className="table-cell p-2 border-b">
-                    שישי<span className="block text-sm font-normal">{formatDay(datesArr[5])}</span>
+                    Fríggjadagur<span className="block text-sm font-normal">{formatDay(datesArr[5])}</span>
                   </div>
                 </div>
               </div>
             ) : (
-              <h3 className="text-lg text-center">לחץ "הכן סידור" ע"מ ליצור סידור עבודה חדש.</h3>
+              <h3 className="text-lg text-center">Trýst á "Ger arbeiðsætlan" fyri at gera eina nýggja arbeiðsætlan.</h3>
             )}
 
             <ScheduleDesktopView table={table} setTable={setTable} datesArr={datesArr} {...days} />
@@ -345,7 +342,7 @@ const Schedule = () => {
               onClick={handleSchedule}
               className="px-4 py-3 text-lg font-semibold text-white rounded-full bg-sky-600 focus:outline-none focus:ring focus:ring-blue-300 hover:bg-sky-700"
             >
-              הכן סידור
+              Ger arbeiðsætlan
             </button>
           )}
           {table && (
@@ -353,7 +350,7 @@ const Schedule = () => {
               onClick={reHandleSchedule}
               className="px-4 py-3 text-lg font-semibold text-white rounded-full bg-sky-600 focus:outline-none focus:ring focus:ring-blue-300 hover:bg-sky-700"
             >
-              הכן סידור {table && ' מחדש'} ⌘
+              Ger arbeiðsætlan {table && ' umaftur'} ⌘
             </button>
           )}
         </form>
@@ -366,7 +363,7 @@ const Schedule = () => {
                   type="submit"
                   className="px-4 py-3 text-lg font-semibold text-white bg-green-600 rounded-full focus:outline-none focus:ring focus:ring-green-300 hover:bg-green-700"
                 >
-                  העלה סידור
+                  Send arbeiðsætlan
                 </button>
               )}
               {!button && (
@@ -374,7 +371,7 @@ const Schedule = () => {
                   className="px-4 py-3 text-lg font-semibold text-white bg-gray-600 rounded-full focus:ring hover:cursor-no-drop"
                   disabled
                 >
-                  העלה סידור
+                  Send arbeiðsætlan
                 </button>
               )}
               {status?.OK === false && (

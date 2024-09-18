@@ -8,9 +8,9 @@ import logoLg from './../logos/logo__full-white.svg';
 import logoSm from './../logos/logo__small.svg';
 
 let navigation = [
-  { name: 'סידור עבודה', href: '/', current: false },
-  { name: 'חסימת תאריך', href: '/block', current: false },
-  { name: 'הבקשות שלי', href: '/requests', current: false },
+  { name: 'Arbeiðsætlan', href: '/', current: false },
+  { name: 'Blokka dato', href: '/block', current: false },
+  { name: 'Mínar umbønir', href: '/requests', current: false },
 ];
 
 function classNames(...classes) {
@@ -87,7 +87,7 @@ const Navbar = () => {
                       type="button"
                       className="flex items-center flex-auto px-1 py-1 font-medium text-gray-100 bg-gray-800 rounded hover:bg-red-700"
                     >
-                      ניהול
+                      Umsiting
                       <StatusOnlineIcon className="w-6 ml-1" />
                     </button>
                   </Link>
@@ -109,22 +109,9 @@ const Navbar = () => {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items
-                      dir="rtl"
+                      dir="ltr"
                       className="absolute z-10 w-40 py-1 mt-2 font-medium origin-top-right bg-white rounded-md shadow-lg right-4 ring-1 ring-black ring-opacity-5 focus:outline-none"
                     >
-                      {/* <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            to="#"
-                            className={classNames(
-                              active ? 'bg-gray-100' : '',
-                              'block px-4 py-2 text-base text-gray-700'
-                            )}
-                          >
-                            פרופיל
-                          </Link>
-                        )}
-                      </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
                           <Link
@@ -134,21 +121,7 @@ const Navbar = () => {
                               'block px-4 py-2 text-base text-gray-700'
                             )}
                           >
-                            הגדרות
-                          </Link>
-                        )}
-                      </Menu.Item> */}
-                      <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            to="#"
-                            onClick={() => handleLogout()}
-                            className={classNames(
-                              active ? 'bg-gray-100' : '',
-                              'block px-4 py-2 text-base text-gray-700'
-                            )}
-                          >
-                            התנתק
+                            Rita út
                           </Link>
                         )}
                       </Menu.Item>

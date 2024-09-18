@@ -31,8 +31,8 @@ const LoginPage = () => {
     } catch (error) {
       console.error(error.message);
       setError({
-        bolded: 'שגיאה',
-        msg: `שם משתמש או סיסמא לא נכונים.`,
+        bolded: 'Villa',
+        msg: `Ógilt brúkaranavn ella loyniorð.`,
       });
     }
   };
@@ -44,13 +44,13 @@ const LoginPage = () => {
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="mb-4" dir="rtl">
               <img src={logo} alt="shift scheduler's logo" />
-              <h2 className="text-xl font-bold text-center text-white">ServIT שלום!</h2>
+              <h2 className="text-xl font-bold text-center text-white">1337.fo 2024</h2>
             </div>
             <div dir="rtl">
               <input
                 className="w-full p-4 text-sm text-gray-600 border border-gray-200 rounded bg-gray-50 focus:outline-none"
                 type="text"
-                placeholder="שם משתמש"
+                placeholder="Brúkaranavn"
                 name="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
@@ -61,7 +61,7 @@ const LoginPage = () => {
               <input
                 className="w-full p-4 text-sm text-gray-600 border border-gray-200 rounded bg-gray-50 focus:outline-none"
                 type="password"
-                placeholder="סיסמא"
+                placeholder="Loyniorð"
                 name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -73,7 +73,7 @@ const LoginPage = () => {
                 className="w-full py-4 text-sm font-bold transition duration-200 bg-blue-600 rounded hover:bg-blue-700 text-gray-50"
                 type="submit"
               >
-                התחבר
+                Rita inn
               </button>
             </div>
             {error && <Msg bolded={error.bolded} msg={error.msg} status={false} />}

@@ -2,7 +2,7 @@ const Msg = ({ bolded, msg, OK }) => {
   return (
     <>
       <div
-        dir="rtl"
+        dir="ltr"
         className={
           OK
             ? `bg-green-100 border border-green-400 text-green-700 my-3 px-4 py-3 rounded relative`

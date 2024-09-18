@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../../Navbar';
 import axios from 'axios';
 import { format } from 'date-fns';
-import he from 'date-fns/locale/he';
+import { fo } from 'date-fns/locale';
 // import 'react-day-picker/style.css';
 import DateInput from './DateInput.tsx';
 // import Table from './Table';
@@ -22,9 +22,9 @@ const AvailabilityPage = () => {
   const [selected, setSelected] = useState(null);
   const today = new Date();
 
-  let footer = 'יש לבחור תאריך';
+  let footer = 'Vel ein dag';
   if (selected) {
-    footer = `${format(selected, 'EEEE, d LLLL yyyy', { locale: he })}.`;
+    footer = `${format(selected, 'EEEE, d LLLL yyyy', { locale: fo })}.`;
   }
 
   let props = {
@@ -44,22 +44,22 @@ const AvailabilityPage = () => {
 
       if (response.data.msg === 'BlockAlreadyRequested') {
         setReqStatus({
-          bold: 'שגיאה',
-          msg: `כבר נשלחה בקשה לחסימת התאריך הזה`,
+          bold: 'Feilur',
+          msg: `Tað er longu send ein umbøn um at blokka henda dagin`,
           OK: false,
         });
       } else if (response.data.msg === 'BlockRequestSuccess') {
         setReqStatus({
-          bold: 'אוקיי!',
-          msg: `הבקשה נשלחה בהצלחה`,
+          bold: 'Í lagi!',
+          msg: `Umbønin er send við góðum úrsliti`,
           OK: true,
         });
         refresh();
       }
     } else {
       setReqStatus({
-        bold: 'שגיאה',
-        msg: 'תאריך לא נבחר',
+        bold: 'Feilur',
+        msg: 'Eingin dagur er valdur',
         OK: false,
       });
     }
@@ -82,7 +82,7 @@ const AvailabilityPage = () => {
   return (
     <>
       <Navbar />
-      <div className="flex justify-center" dir="rtl">
+      <div className="flex justify-center" dir="ltr">
         <form onSubmit={handleSubmit}>
           <DateInput {...props} />
           <CommentTextArea />

@@ -15,7 +15,7 @@ const SchedulePage = () => {
         <>
           <div className="w-screen h-screen grid place-items-center">
             <HashLoader className="content-center" size={100} />
-            <h3>Loading, please wait...</h3>
+            <h3>Løðir, vinarliga bíða...</h3>
           </div>
         </>
       );

@@ -21,15 +21,15 @@ export default function Modal({ dateID }) {
     const response = await axios.post('/delete-request', { employeeID: user.id, dateID });
     if (response.data.msg === 'RequestDeletionSuccess') {
       setReqStatus({
-        bold: 'אוקיי!',
-        msg: `הבקשה נמחקה בהצלחה`,
+        bold: 'Í lagi!',
+        msg: `Umbønin er strikað`,  // Fixed: Closed the template literal
         OK: true,
       });
       refresh();
     } else {
       setReqStatus({
-        bold: 'שגיאה',
-        msg: 'נסה שוב מאוחר יותר',
+        bold: 'Feilur',
+        msg: 'Royn aftur seinni',
         OK: false,
       });
     }
@@ -47,7 +47,7 @@ export default function Modal({ dateID }) {
     <>
       <div onClick={openModal} className="flex p-0.5 mt-2 select-none cursor-pointer">
         <PencilAltIcon className="w-[1.45rem] m-0.5" />
-        <p className="font-medium underline">עוד...</p>
+        <p className="font-medium underline">Meira...</p>
       </div>
 
       <Transition appear show={isOpen} as={Fragment}>
@@ -79,28 +79,28 @@ export default function Modal({ dateID }) {
               leaveTo="opacity-0 scale-95"
             >
               <div
-                dir="rtl"
-                className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-right align-middle transition-all transform bg-white rounded-lg shadow-xl"
+                dir="ltr"
+                className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white rounded-lg shadow-xl"
               >
                 <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                  פרטי בקשה
+                  Umbønarsmálulutir
                 </Dialog.Title>
-                <div dir="rtl" className="mt-2">
+                <div dir="ltr" className="mt-2">
                   {modalData && (
                     <>
                       <div>
-                        <p className="font-medium">תאריך</p>
+                        <p className="font-medium">Dagfesting</p>
                         <p>{modalData.date}</p>
                       </div>
                       <div>
-                        <p className="font-medium">סיבה</p>
+                        <p className="font-medium">Orsøk</p>
                         {modalData.comment && <p>{modalData.comment}</p>}
                         {!modalData.comment && <p>—</p>}
                       </div>
                       <div>
-                        <p className="font-medium">סטטוס</p>
-                        {modalData.approved && <p>אושר</p>}
-                        {!modalData.approved && <p>לא אושר</p>}
+                        <p className="font-medium">Støða</p>
+                        {modalData.approved && <p>Góðkent</p>}
+                        {!modalData.approved && <p>Ikki góðkent</p>}
                       </div>
                     </>
                   )}
@@ -119,14 +119,14 @@ export default function Modal({ dateID }) {
                     className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                     onClick={closeModal}
                   >
-                    סגור
+                    Lat aftur
                   </button>
                   <button
                     type="button"
-                    className="inline-flex justify-center mr-1.5 px-4 py-2 text-sm font-medium text-red-900 bg-blue-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
+                    className="inline-flex justify-center ml-1.5 px-4 py-2 text-sm font-medium text-red-900 bg-blue-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
                     onClick={DeleteRequest}
                   >
-                    הסר
+                    Strika
                   </button>
                   {requestStatus && (
                     <Msg

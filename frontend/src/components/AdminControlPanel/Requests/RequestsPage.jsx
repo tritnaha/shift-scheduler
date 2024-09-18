@@ -16,7 +16,7 @@ const RequestsPage = () => {
         <>
           <div className="grid w-screen h-screen place-items-center">
             <HashLoader className="content-center" size={100} />
-            <h3>Loading, please wait...</h3>
+            <h3>Løðir, vinarliga bíða...</h3>
           </div>
         </>
       );
@@ -36,7 +36,7 @@ const RequestsPage = () => {
       <div>
         <div className="grid mt-5 md:place-items-center" dir="rtl">
           <div className="w-11/12 mx-auto lg:w-4/6">
-            <h1 className="text-3xl font-semibold">בקשות ואילוצים</h1>
+            <h1 className="text-3xl font-semibold">Umbønir og avmarkingar</h1>
             <UsersContextProvider>
               <RequestsList />
             </UsersContextProvider>

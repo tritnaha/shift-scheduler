@@ -15,7 +15,7 @@ const Dashboard = () => {
         <>
           <div className="grid w-screen h-screen place-items-center">
             <HashLoader className="content-center" size={100} />
-            <h3>Loading, please wait...</h3>
+            <h3>Løðir, vinarliga bíða...</h3>
           </div>
         </>
       );
@@ -35,9 +35,9 @@ const Dashboard = () => {
       <div>
         <div className="grid mt-5 place-items-center" dir="rtl">
           <div className="w-11/12 lg:w-4/6">
-            <h1 className="text-3xl font-semibold">לוח בקרה</h1>
+            <h1 className="text-3xl font-semibold">Stýripultur</h1>
             <UsersContextProvider>
-              <h3 className="text-2xl font-medium text-center my-28">בקרוב</h3>
+              <h3 className="text-2xl font-medium text-center my-28">Kemur skjótt</h3>
             </UsersContextProvider>
           </div>
         </div>
